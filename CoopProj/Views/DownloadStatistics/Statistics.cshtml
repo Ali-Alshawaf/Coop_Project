@@ -1,0 +1,181 @@
+﻿@{
+    ViewData["Title"] = "Statistics";
+}
+
+<h1>Statistics</h1>
+
+
+
+<div class="row">
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>Companies</h2>
+                <p>Download all Company information into an Excel file</p>
+
+                @using (Html.BeginForm("CompanyStatistics", "DownloadStatistics", FormMethod.Post))
+                {
+
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                        <div class="col-2">
+                            @Html.Label("Select Year:")
+                        </div>
+                        <div class="col-4">
+                            @{
+                                var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                yearRange.Insert(0, 0); // Add an option for All Years
+                            }
+                            @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>Students</h2>
+                <p>Download all student information into an Excel file</p>
+                @using (Html.BeginForm("SudentStatistics", "DownloadStatistics", FormMethod.Post))
+                {
+
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                        <div class="col-2">
+                            @Html.Label("Select Year:")
+                        </div>
+                        <div class="col-4">
+                            @{
+                                var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                yearRange.Insert(0, 0); // Add an option for All Years
+                            }
+                            @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>Supervisors</h2>
+                <p>Download all supervisor information into an Excel file</p>
+                @using (Html.BeginForm("SupervisorStatistics", "DownloadStatistics", FormMethod.Post))
+                {
+
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                        <div class="col-2">
+                            @Html.Label("Select Year:")
+                        </div>
+                        <div class="col-4">
+                            @{
+                                var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                yearRange.Insert(0, 0); // Add an option for All Years
+                            }
+                            @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>Opportunity</h2>
+                <p>Download all opportunity of company information into an Excel file</p>
+
+                @using (Html.BeginForm("OpportunityStatistics", "DownloadStatistics", FormMethod.Post))
+                {
+
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                        <div class="col-2">
+                            @Html.Label("Select Year:")
+                        </div>
+                        <div class="col-4">
+                            @{
+                                var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                yearRange.Insert(0, 0); // Add an option for All Years
+                            }
+                            @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>Requests</h2>
+                <p>Download all request of student information into an Excel file</p>
+                @using (Html.BeginForm("RequestStatistics", "DownloadStatistics", FormMethod.Post))
+                {
+                    <div class="row">
+                    <div class="col-4">
+                    <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                    </div>
+                        <div class="col-2">
+                        </div>
+                        <div class="col-2">
+                            @Html.Label("Select Year:")
+                        </div>
+                    <div class="col-4">
+                            @{
+                                var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                yearRange.Insert(0, 0); // Add an option for All Years
+                            }
+                            @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>All Files</h2>
+                <p>Download all Files for website information into an Excel file</p>
+                <form action="@Url.Action("DownloadStatistics", "AllSheets")" method="post">
+                    <button class="btn btn-primary" type="submit">Download</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

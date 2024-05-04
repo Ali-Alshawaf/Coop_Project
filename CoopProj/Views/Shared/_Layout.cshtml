@@ -1,0 +1,598 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-layout-mode="horizontal" data-topbar-color="brand">
+<head>
+    <title>Co-op website</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/assets/images/KFU.ico" height="80">
+
+    <!-- plugin css -->
+    <link href="~/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css -->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
+
+    <!-- icons -->
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Theme Config Js -->
+    <script src="~/assets/js/config.js"></script>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+    <!-- Plugins css -->
+    <link href="~/assets/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/assets/libs/mohithg-switchery/switchery.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- third party css -->
+    <link href="~/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <!-- third party css end -->
+
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+
+        <!-- Topbar Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+
+                <ul class="list-unstyled topnav-menu float-end mb-0">
+
+                    <li class="d-none d-md-inline-block">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" id="light-dark-mode" href="#">
+                            <i class="fe-moon noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="dropdown d-none d-lg-inline-block">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="fullscreen" href="#">
+                            <i class="fe-maximize noti-icon"></i>
+                        </a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        
+                        <li class="dropdown notification-list topbar-dropdown">
+
+                            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+@*                                <img src="" alt="user-image" class="rounded-circle">
+*@
+                                <span class="pro-user-name ms-1">
+                                    @User.Identity.Name <i class="mdi mdi-chevron-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+
+                                <!-- item-->                        @if (User.IsInRole("Admin"))
+                                {
+
+                                    <a asp-action="AccountUser" asp-controller="MyAccount" class="dropdown-item notify-item">
+                                        <i class="ri-account-circle-line"></i>
+                                        <span>My Account</span>
+                                    </a>
+                                }
+                                 <!-- item-->                        @if (User.IsInRole("Supervisor"))
+                                {
+
+                                    <a asp-action="AccountUser" asp-controller="MyAccount" class="dropdown-item notify-item">
+                                        <i class="ri-account-circle-line"></i>
+                                        <span>My Account</span>
+                                    </a>
+                                }
+                                 <!-- item-->                        @if (User.IsInRole("Company"))
+                                {
+
+                                    <a asp-action="AccountCompany" asp-controller="MyAccount" class="dropdown-item notify-item">
+                                        <i class="ri-account-circle-line"></i>
+                                        <span>My Account</span>
+                                    </a>
+                                }
+                                <!-- item-->                        @if (User.IsInRole("Student"))
+                                {
+
+                                    <a asp-action="AccountStudent" asp-controller="MyAccount" class="dropdown-item notify-item">
+                                        <i class="ri-account-circle-line"></i>
+                                        <span>My Account</span>
+                                    </a>
+                                }
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- item-->
+                                <a asp-action="Logout" asp-controller="Home" class="dropdown-item notify-item">
+                                    <i class="ri-logout-box-line"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Login" asp-controller="Home" class="nav-link">
+                                <i class="fas fa-door-open"></i>
+                                <span>Login</span>
+                            </a>
+                        </li>
+                    }
+                    <li class="dropdown notification-list">
+                        <a class="nav-link waves-effect waves-light" data-bs-toggle="offcanvas" href="#theme-settings-offcanvas">
+                            <i class="fe-settings noti-icon"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- LOGO -->
+                <div class="logo-box">
+                    <a href="index.html" class="logo logo-dark text-center">
+                        <span class="logo-sm">
+                            <img src="~/assets/images/kfu.png" alt="" height="80">
+                            <!-- <span class="logo-lg-text-light">Minton</span> -->
+                        </span>
+                        <span class="logo-lg">
+                            <img src="~/assets/images/kfu.png" alt="" height="80">
+                            <!-- <span class="logo-lg-text-light">M</span> -->
+                        </span>
+                    </a>
+
+                    <a href="index.html" class="logo logo-light text-center">
+                        <span class="logo-sm">
+                            <img src="~/assets/images/kfu.png" alt="" height="80">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="~/assets/images/kfu.png" alt="" height="80">
+                        </span>
+                    </a>
+                </div>
+
+                <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                    <li>
+                        <button class="button-menu-mobile waves-effect waves-light">
+                            <i class="fe-menu"></i>
+                        </button>
+                    </li>
+
+                    <li>
+                        <!-- Mobile menu toggle (Horizontal Layout)-->
+                        <a class="navbar-toggle nav-link" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a asp-action="AdminHome" asp-controller="Home" class="nav-link">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-action="Index" asp-controller="Majors" class="nav-link">Major</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-action="Index" asp-controller="ReportNames" class="nav-link">Report name</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-action="Statistics" asp-controller="DownloadStatistics" class="nav-link">Statistics</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-action="UpdateSupervisor" asp-controller="Students" class="nav-link">Distribution of students</a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Supervisor")){
+
+                        <li class="nav-item">
+                            <a asp-action="SupervisorHome" asp-controller="Home" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="StudentForSupervisor" asp-controller="Students" class="nav-link">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Supervisor" asp-controller="CreateReports" class="nav-link">Reports</a>
+                        </li>
+
+                       
+                    }
+                    else if (User.IsInRole("Company"))
+                    {
+                        <li class="nav-item">
+                            <a asp-action="CompanyHome" asp-controller="Home" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Index" asp-controller="Requests1" class="nav-link">Opportunities</a>
+                        </li>
+                        <li class="dropdown d-none d-xl-block">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                Requests
+                                <i class="mdi mdi-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <!-- item-->
+                                <a asp-action="Index" asp-controller="ApplyStudentsCompany" class="dropdown-item">
+                                    <span>New requests</span>
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
+                                <!-- item-->
+                                <a asp-action="AcceptStudent" asp-controller="ApplyStudentsCompany" class="dropdown-item">
+                                    <span>Accepted requests</span>
+                                </a>
+
+                                <!-- item-->
+                                <a asp-action="RejectStudent" asp-controller="ApplyStudentsCompany" class="dropdown-item">
+                                    <span>Rejected requests</span>
+                                </a>
+
+                            </div>
+                        </li>
+                    }
+                    else if (User.IsInRole("Student"))
+                    {
+                        <li class="nav-item">
+                            <a asp-action="StudentHome" asp-controller="Home" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Index" asp-controller="RequestsStudent" class="nav-link">Opportunities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Index" asp-controller="ApplyStudents" class="nav-link">Status</a>
+                        </li>
+
+                        <li class="dropdown d-none d-xl-block">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                Reports
+                                <i class="mdi mdi-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <!-- item-->
+                                <a asp-action="Student" asp-controller="CreateReports" class="dropdown-item">
+                                    <span>Upload reports</span>
+                                </a>
+
+
+                                <!-- item-->
+                                <a asp-action="Index" asp-controller="Reports" class="dropdown-item">
+                                    <span>Report History</span>
+                                </a>
+
+                               
+
+             
+                            </div>
+                        </li>
+                       
+                    }
+
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="topnav">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+
+                        <div class="collapse navbar-collapse" id="topnav-menu-content">
+                            <ul class="navbar-nav">
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
+                                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-cog"></i> Setting Accounts <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                        <a asp-action="Index" asp-controller="Users" class="dropdown-item">Admins Account</a>
+                                        <a asp-action="Supervisor" asp-controller="Users" class="dropdown-item">Supervisors Account</a>
+                                        <a asp-action="Index" asp-controller="Students" class="dropdown-item">Students Account</a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
+                                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-briefcase"></i> Companies <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                        <a asp-controller="Companies" asp-action="Index" class="dropdown-item">Companies</a>
+                                        <a asp-controller="Requests" asp-action="Index" class="dropdown-item">Opportunities</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
+                                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-group"></i> Requests <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                        <a asp-action="Index" asp-controller="ApplyStudentsAdmin" class="dropdown-item">Waiting Requests</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a asp-action="AcceptStudent" asp-controller="ApplyStudentsAdmin" class="dropdown-item">Accepted Requests</a>
+                                        <a asp-action="RejectStudent" asp-controller="ApplyStudentsAdmin" class="dropdown-item">Rejected Requests</a>
+                                    </div>
+                                    
+                                </li>
+
+
+                            </ul> <!-- end navbar-->
+                           
+                        </div> <!-- end .collapsed-->
+                    </nav>
+
+                </div> <!-- end container-fluid -->
+            </div> <!-- end topnav-->
+        }
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div> <!-- container -->
+            </div> <!-- content -->
+        </div>
+
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+
+    </div>
+    <!-- END wrapper -->
+    <!-- Right Sidebar -->
+    <div class="offcanvas offcanvas-end right-bar" tabindex="-1" id="theme-settings-offcanvas" data-bs-scroll="true" data-bs-backdrop="true">
+        <div data-simplebar class="h-100">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-bordered nav-justified" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link py-2 active" data-bs-toggle="tab" href="#settings-tab" role="tab">
+                        <i class="mdi mdi-cog-outline d-block font-22 my-1"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content pt-0">
+                <div class="tab-pane active" id="settings-tab" role="tabpanel">
+                    <h6 class="fw-medium px-3 m-0 py-2 font-13 text-uppercase bg-light">
+                        <span class="d-block py-1">Theme Settings</span>
+                    </h6>
+
+                    <div class="p-3">
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
+                        </div>
+
+                        <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Color Scheme</h6>
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-bs-theme" value="light" id="light-mode-check" checked>
+                            <label class="form-check-label" for="light-mode-check">Light Mode</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-bs-theme" value="dark" id="dark-mode-check">
+                            <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+                        </div>
+
+                        <!-- Width -->
+                        <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Width</h6>
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-layout-width" value="fluid" id="fluid-check" checked>
+                            <label class="form-check-label" for="fluid-check">Fluid</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-layout-width" value="boxed" id="boxed-check">
+                            <label class="form-check-label" for="boxed-check">Boxed</label>
+                        </div>
+
+
+                        <!-- Topbar -->
+                        <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Topbar</h6>
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-topbar-color" value="light" id="lighttopbar-check">
+                            <label class="form-check-label" for="lighttopbar-check">Light</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-topbar-color" value="dark" id="darktopbar-check" checked>
+                            <label class="form-check-label" for="darktopbar-check">Dark</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-topbar-color" value="brand" id="brandtopbar-check">
+                            <label class="form-check-label" for="brandtopbar-check">brand</label>
+                        </div>
+
+
+                        <!-- Menu positions -->
+                        <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Menus Positon <small>(Leftsidebar and Topbar)</small></h6>
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-layout-position" value="fixed" id="fixed-check" checked>
+                            <label class="form-check-label" for="fixed-check">Fixed</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-layout-position" value="scrollable" id="scrollable-check">
+                            <label class="form-check-label" for="scrollable-check">Scrollable</label>
+                        </div>
+
+
+                        <!-- Menu Color-->
+                        <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Menu Color</h6>
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-menu-color" value="light" id="light-check" checked>
+                            <label class="form-check-label" for="light-check">Light</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-menu-color" value="dark" id="dark-check">
+                            <label class="form-check-label" for="dark-check">Dark</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-menu-color" value="brand" id="brand-check">
+                            <label class="form-check-label" for="brand-check">Brand</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-menu-color" value="gradient" id="gradient-check">
+                            <label class="form-check-label" for="gradient-check">Gradient</label>
+                        </div>
+
+
+                        <!-- size -->
+                        <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Size</h6>
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-sidebar-size" value="default" id="default-size-check" checked>
+                            <label class="form-check-label" for="default-size-check">Default</label>
+                        </div>
+
+                        <div class="form-check form-switch mb-1">
+                            <input class="form-check-input" type="checkbox" name="data-sidebar-size" value="condensed" id="condensed-check">
+                            <label class="form-check-label" for="condensed-check">Condensed <small>(Extra Small size)</small></label>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div> <!-- end slimscroll-menu-->
+    </div>
+    <!-- /Right-bar -->
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <script>document.write(new Date().getFullYear())</script> &copy; Dev by <a href="kfu.edu.sa">KFU</a>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-md-end footer-links d-none d-sm-block">
+                        <a href="javascript:void(0);">About Us</a>
+                        <a href="javascript:void(0);">Help</a>
+                        <a href="javascript:void(0);">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+    <!-- Vendor js -->
+    <script src="~/assets/js/vendor.min.js"></script>
+
+    <!-- App js -->
+    <script src="~/assets/js/app.min.js"></script>
+
+    <!-- Plugins js-->
+    <script src="~/assets/libs/selectize/js/standalone/selectize.min.js"></script>
+    <script src="~/assets/libs/mohithg-switchery/switchery.min.js"></script>
+    <script src="~/assets/libs/multiselect/js/jquery.multi-select.js"></script>
+    <script src="~/assets/libs/jquery.quicksearch/jquery.quicksearch.min.js"></script>
+    <script src="~/assets/libs/select2/js/select2.min.js"></script>
+    <script src="~/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="~/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="~/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/assets/libs/dropzone/min/dropzone.min.js"></script>
+    <script src="~/assets/libs/quill/quill.min.js"></script>
+
+    <!-- Init js-->
+    <script src="~/assets/js/pages/form-wizard.init.js"></script>
+
+    <!-- KNOB JS -->
+    <script src="~/assets/libs/jquery-knob/jquery.knob.min.js"></script>
+    <!-- Apex js-->
+    <script src="~/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+
+    <!-- Dashboard init-->
+    <script src="~/assets/js/pages/dashboard-sales.init.js"></script>
+
+    <!-- Init js-->
+    <script src="~/assets/js/pages/form-fileuploads.init.js"></script>
+    <script src="~/assets/js/pages/form-quilljs.init.js"></script>
+    <script src="~/assets/js/pages/form-advanced.init.js"></script>
+
+
+    <!-- third party js -->
+    <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="~/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+    <script src="~/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+    <script src="~/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+    <!-- third party js ends -->
+    <!-- Datatables init -->
+    <script src="~/assets/js/pages/datatables.init.js"></script>
+
+
+    <!-- Dashboard init-->
+    <script src="~/assets/js/pages/dashboard-sales.init.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿@using System.Security.Claims;
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="text-center">
+                        <h1>Welcome, @User.FindFirst(ClaimTypes.GivenName).Value</h1>
+                    </div> <!-- end row -->
+                </div>
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    </div>
+</div>
+<!-- end row -->
+
+
+<div class="row">
+    <div class="col-xl-4 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <p class="text-muted mb-0">Number of opportunities</p>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.Opportinity</span> </h3>
+                </div>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <p class="text-muted mb-0">Number of student Requests </p>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.StudentRequest</span> </h3>
+                </div>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <p class="text-muted mb-0">Number of accepted students</p>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.StudentAccept</span> </h3>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <p class="text-muted mb-0">Number of rejected students</p>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.StudentReject</span> </h3>
+                </div>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+    <div class="col-xl-4 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <p class="text-muted mb-0">Number of waiting students</p>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.Studentwaiting</span> </h3>
+                </div>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+</div>

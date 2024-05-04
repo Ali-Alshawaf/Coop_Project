@@ -1,0 +1,50 @@
+﻿@model CoopProj.Models.CreateReport
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div>
+                        <a asp-action="Supervisor" style="font-size: 35px;">
+                            <i class="fe-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-10">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="ReportNameId" class="control-label"></label>
+                                <select asp-for="ReportNameId" class="form-control" asp-items="ViewBag.ReportNameId">
+                                    <option hidden>Select Report</option>
+                                </select>
+                                <span asp-validation-for="ReportNameId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="StartTime" class="control-label"></label>
+                                <input asp-for="StartTime" class="form-control" />
+                                <span asp-validation-for="StartTime" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="EndTime" class="control-label"></label>
+                                <input asp-for="EndTime" class="form-control" />
+                                <span asp-validation-for="EndTime" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

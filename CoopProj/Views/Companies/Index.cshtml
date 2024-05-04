@@ -1,0 +1,118 @@
+﻿@model IEnumerable<CoopProj.Models.Companies>
+
+@{
+    ViewData["Title"] = "Companies";
+}
+
+@if (!string.IsNullOrEmpty(ViewData["SearchTerm"] as string))
+{
+    <div class="mt-3">
+        <a asp-action="Index" style="font-size: 35px;">
+            <i class="fe-arrow-left"></i>
+        </a>
+    </div>
+}
+@if (string.IsNullOrEmpty(ViewData["SearchTerm"] as string))
+{
+    <h1>Companies</h1>
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form class="d-flex flex-wrap align-items-center" asp-action="Index" method="get">
+                            <div class="d-flex flex-wrap align-items-center">
+                                <label for="inputPassword2" class="visually-hidden">Search</label>
+                                <input type="search" class="form-control" id="inputPassword2" placeholder="Search..." name="searchTerm" value="@ViewData["SearchTerm"]">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="d-flex gap-2 justify-content-lg-end mt-3 mt-lg-0">
+                            <a asp-action="Create" class="btn btn-danger waves-effect waves-light"><i class="mdi mdi-plus-circle me-1"></i> Create New</a>
+                        </div>
+                    </div><!-- end col-->
+                </div> <!-- end row -->
+            </div>
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+<!-- end row -->
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start">
+                        <!-- Company information -->
+                        <div class="avatar-md me-3">
+                            <div class="avatar-title bg-light rounded-circle">
+                                <img src="@item.Image" alt="logo" class="avatar-sm rounded-circle">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-muted text-truncate mb-0">
+                                <h2>@item.Name</h2>
+                            </p>
+                        </div>
+                        <div class="dropdown">
+                            <a class="text-body dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-dots-vertical font-20"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-muted">
+                        <div class="row">
+                            <!-- Company contact information -->
+                            <div class="col-2">
+                                <div>
+                                    <p class="text-truncate mb-0">Contact Name</p>
+                                    <h5 class="mb-sm-0">@item.ContactName</h5>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div>
+                                    <p class="text-truncate mb-0">Contact Number</p>
+                                    <h5 class="mb-sm-0">@item.ContactNumber</h5>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div>
+                                    <p class="text-truncate mb-0">Email</p>
+                                    <h5 class="mb-sm-0">@item.Email</h5>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div>
+                                    <p class="text-truncate mb-0">Description</p>
+                                    <h5 class="mb-sm-0">@item.Description</h5>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <!-- Opportunities button -->
+                                <div class="d-flex gap-2 justify-content-lg-end mt-3 mt-lg-0">
+                                    <a href="@Url.Action("Index", "Requests", new { CompaniesID = item.Id })" class="btn btn-outline-success">Opportunities</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

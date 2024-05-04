@@ -1,0 +1,27 @@
+﻿@model List<Students>
+
+@using (Html.BeginForm("UpdateSupervisorAsync", "PutSupervisor", FormMethod.Post))
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Major</th>
+                <th>Supervisor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@Model[i].Name</td>
+                    <td>@Model[i].Major</td>
+                    <td>
+                        @Html.DropDownListFor(m => m[i].SupervisorID, new SelectList(ViewBag.Supervisors, "ID", "Name"), "Select Supervisor")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit">Save Changes</button>
+}

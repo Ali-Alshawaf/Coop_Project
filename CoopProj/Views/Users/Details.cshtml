@@ -1,0 +1,96 @@
+﻿@model CoopProj.Models.Users
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .tablex {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .tablex thead th {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .tablex tbody td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+</style>
+<h1>Details</h1>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <a href="javascript:void(0);" onclick="window.history.back();" style="font-size:35px; "><i class="fe-arrow-left"></i></a>
+                <hr />
+                <table class="tablex">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NumberPhone)
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.Name)</td>
+                            <td>@Html.DisplayFor(model => model.Email)</td>
+                            <td>@Html.DisplayFor(model => model.NumberPhone)</td>
+                            <td>
+                                <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1>Dependent students</h1>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Major</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in (List<CoopProj.Models.Students>)ViewData["RelatedStudents"])
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+                <td>@student.NumberPhone</td>
+                <td>@student.Major.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

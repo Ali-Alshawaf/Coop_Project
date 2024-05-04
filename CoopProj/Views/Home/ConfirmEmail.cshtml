@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Confirm Email";
+}
+
+<h1>Confirm Email</h1>
+
+<p>
+    Thank you for signing up! Please click the button below to confirm your email address.
+</p>
+
+<p>
+    Email: @ViewBag.Email
+</p>
+
+<form method="post" action="@Url.Action("ConfirmEmailAction", "Home")">
+    <input type="hidden" name="email" value="@ViewBag.Email" />
+    <input type="hidden" name="token" value="@ViewBag.Token" />
+    <input type="submit" value="Confirm Email" />
+</form>

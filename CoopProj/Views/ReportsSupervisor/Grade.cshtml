@@ -1,0 +1,102 @@
+﻿@model CoopProj.Models.Reports
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table thead th {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table tbody td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+</style>
+
+<div class="row">
+    <h1>
+        @Html.DisplayFor(model => model.CreateReport.ReportName.Name)
+    </h1>
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <div>
+                        <a href="javascript:void(0);" onclick="window.history.back();" style="font-size:35px; "><i class="fe-arrow-left"></i></a>
+
+                    </div>
+                    <br />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Student Email</th>
+                                <th>Notes</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Html.DisplayFor(model => model.StudentReport.Name)</td>
+                                <td>@Html.DisplayFor(model => model.StudentReport.Email)</td>
+                                <td>@Html.DisplayFor(model => model.Notes)</td>
+                                <td>@Html.DisplayFor(model => model.Time)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Supervisor</th>
+                                <th>Time</th>
+                                <th>Grade</th>
+                                <th>Description</th>
+                                <th>Edit</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Html.DisplayFor(model => model.CreateReport.SupervisorReport.Name)</td>
+                                <td>@Html.DisplayFor(model => model.Settings)</td>
+                                <td>@Html.DisplayFor(model => model.Grade)</td>
+                                <td>@Html.DisplayFor(model => model.Description)</td>
+                                <td>
+                                    <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@Model.Id"><i class="fe-edit-1"></i></a>
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <br />
+                    @if (ViewData["notfound"] == null)
+                    {
+                        @if (!string.IsNullOrEmpty(ViewData["FeedbackContent"] as string))
+                        {
+                            <h3>Report Feedback</h3>
+                            <embed src="data:application/pdf;base64,@ViewData["FeedbackContent"]" width="100%" height="600px" type="application/pdf"></embed>
+                        }
+
+                    }
+                    else
+                    {
+                        <h2>@ViewData["notfound"]</h2>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

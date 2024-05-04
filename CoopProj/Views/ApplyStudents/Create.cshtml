@@ -1,0 +1,166 @@
+﻿@model CoopProj.Models.ApplyStudent
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="content">
+    <!-- Start Content-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title mb-3"> ApplyStudent </h4>
+                        <form asp-action="Create" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div id="basicwizard">
+                                <ul class="nav nav-pills nav-justified form-wizard-header mb-4">
+                                    <li class="nav-item">
+                                        <a href="#basictab1" data-bs-toggle="tab" data-toggle="tab" class="nav-link">
+                                            <span class="number">1</span>
+                                            <span class="d-none d-sm-inline">Files</span>
+                                        </a>
+                                    </li>
+                                   
+                                    <li class="nav-item">
+                                        <a href="#basictab3" data-bs-toggle="tab" data-toggle="tab" class="nav-link">
+                                            <span class="number">3</span>
+                                            <span class="d-none d-sm-inline">Finish</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content b-0 mb-0">
+                                    <div class="tab-pane" id="basictab1">
+                                        <div class="row">
+
+                                            <div class="col-3">
+                                                <div class="row mb-3">
+                                                    <label asp-for="Letter" class="control-label">Letter<span class="text-danger">*</span></label>
+                                                    <input name="Letter" type="file" accept=".pdf" class="form-control" />
+                                                    <span asp-validation-for="Letter" class="text-danger"></span>
+                                                </div>
+                                                </div>
+                                            <div class="col-1"></div>
+
+                                                <div class="col-3">
+                                                <div class="row mb-3">
+                                                    <label asp-for="File" class="control-label">CV<span class="text-danger">*</span></label>
+                                                    <input name="File" type="file" accept=".pdf" class="form-control" />
+                                                    <span asp-validation-for="File" class="text-danger"></span>
+                                                </div>
+                                                </div>
+                                            <div class="col-1"></div>
+
+                                                    <div class="col-3">
+                                                <div class="row mb-3">
+                                                    <label asp-for="Transcript" class="control-label">Transcript<span class="text-danger">*</span></label>
+                                                    <input name="Transcript" type="file" accept=".pdf" class="form-control" />
+                                                    <span asp-validation-for="Transcript" class="text-danger"></span>
+                                                </div>
+                                                </div>
+                                            </div> <!-- end col -->
+
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="row mb-3">
+                                                            <label asp-for="StartTrining" class="control-label"></label>
+                                                            <input asp-for="StartTrining" class="form-control" />
+                                                            <span asp-validation-for="StartTrining" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                <div class="col-1">                                                    </div>
+
+
+                                                    <div class="col-5">
+                                                        <div class="row mb-3">
+                                                            <label asp-for="EndTrining" class="control-label"></label>
+                                                            <input asp-for="EndTrining" class="form-control" />
+                                                            <span asp-validation-for="EndTrining" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="row mb-3">
+                                                        <label asp-for="GPA" class="control-label"></label>
+                                                        <input asp-for="GPA" class="form-control" />
+                                                        <span asp-validation-for="GPA" class="text-danger"></span>
+                                                    </div>
+
+
+
+                                                </div> <!-- Add a div with col-2 class to create space -->
+
+                                        </div> <!-- end row -->
+                                        <div class="row mb-3">
+                                            <label asp-for="Information" class="control-label"></label>
+                                            <textarea asp-for="Information" class="form-control form-control-lg" rows="3" placeholder="Why do you want to join us"></textarea>
+                                            <span asp-validation-for="Information" class="text-danger"></span>
+                                        </div>
+                                        <ul class="pager wizard mb-0 list-inline text-end mt-2">
+                                            <li class="next list-inline-item">
+                                                <button type="button" class="btn btn-success">Next <i class="mdi mdi-arrow-right ms-1"></i></button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- end tab pane -->
+
+                                 
+
+
+                                    <div class="tab-pane" id="basictab3">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="text-center">
+                                                    <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
+                                                    <h3 class="mt-0">Thank you !</h3>
+
+                                                    <p class="w-75 mb-2 mx-auto">
+                                                        I certify that all of the above information and documents accompanying my application; Correct and factual.
+                                                    </p>
+                                                    <div class="mb-3">
+                                                        <div class="form-check d-inline-block">
+                                                            <input class="form-check-input" type="checkbox" value="" id="terms-conditions-basicwizard">
+                                                            <label class="form-check-label" for="terms-conditions-basicwizard">
+                                                                I agree with the Terms and Conditions
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+
+                                                    <ul class="pager wizard mb-0 list-inline mt-2">
+                                                        <li class="previous list-inline-item">
+                                                            <button type="button" class="btn btn-light"><i class="mdi mdi-arrow-left me-1"></i> Back</button>
+                                                        </li>
+                                                        <li class="next list-inline-item float-end">
+                                                            <input type="submit" value="Send Application" class="btn btn-primary" id="send-application-btn" disabled />
+                                                        </li>
+                                                    </ul>
+                                        <script>
+                                            // Get the checkbox and the submit button
+                                            const agreeCheckbox = document.getElementById("terms-conditions-basicwizard");
+                                            const sendApplicationBtn = document.getElementById("send-application-btn");
+
+                                            // Add an event listener to the checkbox
+                                            agreeCheckbox.addEventListener("change", function () {
+                                                // Enable or disable the submit button based on the checkbox state
+                                                sendApplicationBtn.disabled = !agreeCheckbox.checked;
+                                            });
+                                        </script>
+                                    </div>
+                                    <!-- end tab pane -->
+                                </div> <!-- tab-content -->
+                            </div> <!-- end #basicwizard-->
+                        </form>
+                    </div>
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+</div> <!-- end row -->

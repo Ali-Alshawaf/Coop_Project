@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CoopProj.Models.ApplyStudent>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Student Requests</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+            
+                <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Students)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Requests)
+            </th>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Students.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Requests.Companies.Name)
+                    @Html.DisplayFor(modelItem => item.Requests.Application)
+                </td>
+             
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            
+                <td>
+                    <div class="d-flex gap-2 justify-content-lg-end mt-3 mt-lg-0">
+                        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id"><i class="fe-edit-1"></i></a>
+                        <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="fe-file-text"></i></a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fe-trash"></i></a>
+                    </div>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

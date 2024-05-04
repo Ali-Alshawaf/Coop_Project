@@ -1,0 +1,160 @@
+﻿@model IEnumerable<CoopProj.Models.Users>
+
+@{
+    ViewData["Title"] = "Supervisor";
+}
+
+<h1>Supervisor Account</h1>
+
+<script>
+    function confirmAccess(UserId) {
+        swal({
+            title: "Are you sure?",
+            text: "This action will grant access to the Supervisor.",
+            icon: "warning",
+            buttons: {
+                cancel: "Cancel",
+                confirm: {
+                    text: "Yes",
+                    value: true,
+                    visible: true,
+                    className: "btn btn-primary",
+                    closeModal: true
+                }
+            }
+        }).then(function (confirmed) {
+            if (confirmed) {
+                accessStudent(UserId);
+            }
+        });
+    }
+
+    function accessStudent(UserId) {
+        var form = document.createElement("form");
+        form.method = "post";
+        form.action = "@Url.Action("ConfirmAccess")";
+
+        var hiddenField = document.createElement("input");
+        hiddenField.type = "hidden";
+        hiddenField.name = "id";
+        hiddenField.value = UserId;
+
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+    }
+    function confirmDelete(UserId) {
+        swal({
+            title: "Are you sure?",
+            text: "This action will delete the Supervisor.",
+            icon: "warning",
+            buttons: {
+                cancel: "Cancel",
+                confirm: {
+                    text: "Yes",
+                    value: true,
+                    visible: true,
+                    className: "btn btn-danger",
+                    closeModal: true
+                }
+            }
+        }).then(function (confirmed) {
+            if (confirmed) {
+                deleteStudent(UserId);
+            }
+        });
+    }
+
+    function deleteStudent(UserId) {
+        var form = document.createElement("form");
+        form.method = "post";
+        form.action = "@Url.Action("ConfirmDelete")";
+
+        var hiddenField = document.createElement("input");
+        hiddenField.type = "hidden";
+        hiddenField.name = "id";
+        hiddenField.value = UserId;
+
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <p>
+                    <a asp-action="CreateSupervisor"><span class="fe-plus-circle"></span>Add Supervisor</a>
+                </p>
+                <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NumberPhone)
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            @if (item.IsDeleted == true)
+                            {
+                            <tr>
+                                <td style="color:red">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                    <td style="color:red">
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                    <td style="color:red">
+                                    @Html.DisplayFor(modelItem => item.NumberPhone)
+                                </td>
+
+                                <td>
+                                    <div class="d-flex gap-2 justify-content-lg-end mt-3 mt-lg-0">
+                                        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id"><i class="fe-edit-1"></i></a>
+                                        <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="fe-file-text"></i></a>
+                                            <a class="btn btn-outline-primary" onclick="confirmAccess('@item.Id')"><i class="ri-task-fill"></i></a>
+                                        </div>
+                                </td>
+                                </tr>
+                            }
+
+                           else {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NumberPhone)
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex gap-2 justify-content-lg-end mt-3 mt-lg-0">
+                                            <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id"><i class="fe-edit-1"></i></a>
+                                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="fe-file-text"></i></a>
+                                            <a class="btn btn-outline-danger" onclick="confirmDelete('@item.Id')"><i class="ri-delete-bin-line"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

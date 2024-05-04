@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CoopProj.Models.Reports>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.StudentReport.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreateReport.ReportName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Time)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Notes)
+                            </th>
+
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StudentReport.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateReport.ReportName.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Time)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Notes)
+                                </td>
+
+
+                                <td>
+                                    <a class="btn btn-outline-info" asp-controller="ReportsSupervisor" asp-action="Details" asp-route-id="@item.Id"><i class="fe-file-text"></i></a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

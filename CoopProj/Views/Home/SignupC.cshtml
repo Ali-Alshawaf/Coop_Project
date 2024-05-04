@@ -1,0 +1,189 @@
+﻿@model CoopProj.Models.Companies
+
+@{
+    Layout = null;
+
+    ViewData["Title"] = "Sign Up";
+}
+
+
+<!DOCTYPE html>
+<html lang="en" data-layout-mode="horizontal" data-topbar-color="brand">
+<head>
+    <meta charset="utf-8" />
+    <title>Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/assets/images/KFU.ico" height="80">
+
+    <!-- plugin css -->
+    <link href="~/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css -->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
+
+    <!-- icons -->
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Theme Config Js -->
+    <script src="~/assets/js/config.js"></script>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!-- Plugins css -->
+    <link href="~/assets/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
+
+    <!-- third party css -->
+    <link href="~/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <!-- third party css end -->
+
+</head>
+
+<body class=auth-fluid-pages pb-0">
+
+    <div class="auth-fluid">
+        <!-- Auth fluid right content -->
+        <div class="auth-fluid-right">
+            <div class="auth-user-testimonial">
+                <h3 class="mb-3 text-white">
+                    COOP Website CCSIT
+                </h3>
+                <p class="lead fw-normal">
+                    <i class="mdi mdi-format-quote-open"></i> Cooperative Education (COOP) programs or Cooperative Learning. COOP programs are educational initiatives that provide students with opportunities to gain practical work experience while pursuing their studies.
+
+                    <i class="mdi mdi-format-quote-close"></i>
+                </p>
+                <h5 class="text-white">
+                    -KFU
+                </h5>
+            </div> <!-- end auth-user-testimonial-->
+        </div>
+        <!-- end Auth fluid right content -->
+        <!--Auth fluid left content -->
+        <div class="auth-fluid-form-box">
+            <div class="align-items-center d-flex h-100">
+                <div class="card-body">
+
+                    <!-- Logo -->
+                    <div class="auth-brand text-center text-lg-start">
+                        <div class="auth-logo">
+                            <a href="index.html" class="logo logo-dark text-center">
+                                <span class="logo-lg">
+                                    <img src="~/assets/images/R.png" alt="" height="55">
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light text-center">
+                                <span class="logo-lg">
+                                    <img src="~/assets/images/R.png" alt="" height="55">
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs nav-bordered">
+                        <li class="nav-item">
+                            <a href="Signup" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                                Sign Up Student
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="SignupC" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
+                                Sign Up Company
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- title-->
+                    <h4 class="mt-4">Sign In</h4>
+                    <p class="text-muted mb-4">Enter your information.</p>
+
+                    <!-- form -->
+                    <form asp-action="SignupC">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col">
+                                <label asp-for="Name" class="control-label"></label><span class="text-danger">*</span>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label asp-for="Email" class="control-label"></label><span class="text-danger">*</span>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-6">
+                                <label asp-for="ContactName" class="control-label"></label><span class="text-danger">*</span>
+                                <input asp-for="ContactName" class="form-control" />
+                                <span asp-validation-for="ContactName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label asp-for="ContactNumber" class="control-label"></label><span class="text-danger">*</span>
+                                <input asp-for="ContactNumber" class="form-control" />
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="PassWord" class="control-label"></label><span class="text-danger">*</span>
+                                <input type="password" asp-for="PassWord" class="form-control" />
+                                <span asp-validation-for="PassWord" class="text-danger"></span>
+                            </div>
+
+                            <div class="col">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control" rows="1"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="d-grid text-center mt-2">
+                            <input type="submit" value="Signup" class="btn btn-primary" />
+
+                        </div>
+
+
+                    </form>
+                    <!-- end form-->
+                    <!-- Footer-->
+                    <footer class="footer footer-alt mt-2">
+                        <p class="text-muted"><a asp-action="Login" class="text-primary fw-medium ms-1">Log in</a></p>
+                    </footer>
+
+                </div> <!-- end .card-body -->
+            </div> <!-- end .align-items-center.d-flex.h-100-->
+        </div>
+        <!-- end auth-fluid-form-box-->
+    </div>
+    <!-- end auth-fluid-->
+    <!-- Vendor js -->
+    <script src="assets/js/vendor.min.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.min.js"></script>
+
+</body>
+</html>

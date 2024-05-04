@@ -1,0 +1,47 @@
+﻿@model CoopProj.Models.Users
+
+@{
+    ViewData["Title"] = "Add Admin";
+}
+
+    <h2>Add Admin</h2>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="javascript:void(0);" onclick="window.history.back();" style="font-size:35px; "><i class="fe-arrow-left"></i></a>
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label asp-for="NumberPhone" class="control-label"></label>
+                                <input asp-for="NumberPhone" class="form-control" />
+                                <span asp-validation-for="NumberPhone" class="text-danger"></span>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label asp-for="PassWord" class="control-label"></label>
+                                <input asp-for="PassWord" class="form-control" />
+                                <span asp-validation-for="PassWord" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-4">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+

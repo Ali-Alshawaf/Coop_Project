@@ -1,0 +1,156 @@
+﻿@model IEnumerable<CoopProj.Models.Requests>
+
+@{
+    ViewData["Title"] = "opportunities";
+}
+
+
+
+<h1>opportunities</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form class="d-flex flex-wrap align-items-center">
+                            <div class="d-flex flex-wrap align-items-center">
+                                <label for="inputPassword2" class="visually-hidden">Search</label>
+                                <input type="search" class="form-control" id="inputPassword2" placeholder="Search...">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="d-flex gap-2 justify-content-lg-end mt-3 mt-lg-0">
+                            <a asp-action="Create" asp-controller="Requests1" class="btn btn-danger waves-effect waves-light"><i class="mdi mdi-plus-circle me-1"></i> Create New</a>
+                        </div>
+                    </div><!-- end col-->
+                </div> <!-- end row -->
+            </div>
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+<!-- end row -->
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-xl-6 col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start">
+                        <div class="avatar-md me-3">
+                            <div class="avatar-title bg-light rounded-circle">
+                                <img src="@item.Companies.Image" alt="logo" class="avatar-sm rounded-circle">
+                            </div>
+                           
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="my-1"><a href="javascript:void(0);" class="text-dark"></a></h4>
+
+                            <p class="text-muted text-truncate mb-0">
+                                <h2> @Html.DisplayFor(modelItem => item.Companies.Name)</h2>
+                                <i class="ri-map-pin-line align-bottom me-1">@Html.DisplayFor(modelItem => item.Location)</i>
+
+                            </p>
+
+                            <div>
+
+                                <p class="text-truncate mb-0">
+                                    @Html.DisplayNameFor(model => model.Major)
+                                </p>
+                                
+
+                                <h5 class="mb-sm-0">
+                                    @Html.DisplayFor(modelItem => item.Major)
+                                </h5>
+                                
+                            </div>
+                            <div>
+
+                                <p class="text-truncate mb-0">
+                                    @Html.DisplayNameFor(model => model.Quantity)
+                                </p>
+
+
+                                <h5 class="mb-sm-0">
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </h5>
+
+                            </div>
+
+                            
+                        </div>
+                        <div class="dropdown">
+                            <a class="text-body dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mdi mdi-dots-vertical font-20"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" asp-action="Requests" asp-route-id="@item.Id">Requests</a>
+                                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-muted">
+                        <div class="row">
+                            <div class="col-6">
+                                <div>
+                                    <p class="text-truncate mb-0">
+                                        @Html.DisplayNameFor(model => model.Application)
+                                    </p>
+                                    <h5 class="mb-sm-0">
+                                        @Html.DisplayFor(modelItem => item.Application)
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <p class="text-truncate mb-0">
+                                        @Html.DisplayNameFor(model => model.StartDate)
+                                    </p>
+                                    <h5 class="mb-sm-0">
+                                        @Html.DisplayFor(modelItem => item.StartDate)
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                @if (item.EndDate > DateTime.Now)
+                                {
+                                    <div>
+                                        <p class="text-truncate mb-0">
+                                            @Html.DisplayNameFor(model => model.EndDate)
+                                        </p>
+                                        <h5 class="mb-sm-0">
+                                            @Html.DisplayFor(modelItem => item.EndDate)
+                                        </h5>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <p class="text-truncate mb-0">
+                                            @Html.DisplayNameFor(model => model.EndDate)
+                                        </p>
+
+                                        <p class="text-danger">Time is over</p>
+                                    </div>
+                                    
+                                       
+                                    
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- end row -->

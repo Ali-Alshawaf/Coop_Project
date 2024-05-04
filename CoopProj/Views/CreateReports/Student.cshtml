@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CoopProj.Models.CreateReport>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                @if (Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <div class="card">
+                            <h5 class="card-header">@Html.DisplayFor(modelItem => item.ReportName.Name)</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.SupervisorReport.Name)</h5>
+                                <p class="card-text">@Html.DisplayNameFor(model => model.StartTime): @Html.DisplayFor(modelItem => item.StartTime)</p>
+                                <p class="card-text">@Html.DisplayNameFor(model => model.EndTime): @Html.DisplayFor(modelItem => item.EndTime)</p>
+                                @if (DateTime.Now > item.EndTime)
+                                {
+                                    <p class="card-text">Time is Up.</p>
+                                }
+                                else
+                                {
+                                    <a asp-action="Create" asp-controller="Reports" asp-route-Id="@item.Id" class="btn btn-primary">Send</a>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h2 class="header-message text-muted text-center">There are no required reports.</h2>
+                }
+            </div>
+        </div>
+    </div>
+</div>

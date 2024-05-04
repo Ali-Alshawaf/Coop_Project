@@ -1,0 +1,78 @@
+﻿@model CoopProj.Models.Students
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+    <h2>Edit Student</h2>
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <a asp-action="Index" style="font-size: 35px;">
+                        <i class="fe-arrow-left"></i>
+                    </a>
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="row">
+                        <div class="col-6 mb-3">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        <div class="col-6 mb-3">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-6 mb-3">
+                            <label asp-for="UniversityID" class="control-label"></label>
+                            <input asp-for="UniversityID" class="form-control" />
+                            <span asp-validation-for="UniversityID" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label asp-for="NumberPhone" class="control-label"></label>
+                            <input asp-for="NumberPhone"  class="form-control" />
+                            <span asp-validation-for="NumberPhone" class="text-danger"></span>
+                        </div>
+                        </div>
+                            <div class="row">
+                        <div class="col-6 mb-3">
+                            <label asp-for="AccessFile" class="control-label"></label>
+                            <input asp-for="AccessFile" type="file" accept=".pdf" class="form-control" />
+                            <span asp-validation-for="AccessFile" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label asp-for="MajorId" class="control-label"></label>
+                            <select asp-for="MajorId" class="form-control" asp-items="ViewBag.MajorId">
+                                <option hidden>Select Major</option>
+                            </select>
+                        </div>
+                        </div>
+                                <div class="form-group row">
+                        <div class="col">
+                            <label asp-for="SupervisorID" class="control-label"></label>
+                            <select asp-for="SupervisorID" class="form-control" asp-items="ViewBag.SupervisorID">
+                                <option hidden>Select Supervisor</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label asp-for="PassWord" class="control-label"></label>
+                            <input type="password" asp-for="PassWord" class="form-control" value="@ViewData["OldPassword"]" />
+                            <span asp-validation-for="PassWord" class="text-danger"></span>
+                        </div>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

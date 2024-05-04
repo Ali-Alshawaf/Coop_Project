@@ -1,0 +1,257 @@
+﻿@model CoopProj.Models.Students
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div>
+                    <div>
+                        <a asp-action="Index" style="font-size: 35px;">
+                            <i class="fe-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.UniversityID)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.UniversityID)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.NumberPhone)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.NumberPhone)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Major.Name)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Major.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Supervisor.Name)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Supervisor.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Access)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @if (Model.Access == true)
+                            {
+                                <span class="text-success">Accepted</span>
+                            }
+                            else if (Model.Access == false)
+                            {
+                                <span class="text-danger">Rejected</span>
+                            }
+                        </dd>
+                    </dl>
+
+
+                    <script>
+                        // Your other JavaScript functions ...
+
+                        function showConfirmationAndCapture(message, action) {
+                            console.log('Rejection button clicked');
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                icon: 'question',
+                                text: message,
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes',
+                                cancelButtonText: 'Cancel',
+                                showCloseButton: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    var emailContent = document.getElementById('snow-editor').innerHTML;
+                                    document.getElementById('emailContent').value = emailContent;
+
+                                    // Check if the action is "Reject"
+                                    if (action === 'Reject') {
+                                        // Perform your rejection logic, including sending the content to the server
+                                        var id = document.querySelector('input[name="Id"]').value;
+                                        rejectApplication(id, emailContent);
+                                    }
+                                }
+                            });
+                        }
+
+                        function showConfirmationAndCapture1(message, action) {
+                            console.log('Accept button clicked');
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                icon: 'question',
+                                text: message,
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes',
+                                cancelButtonText: 'Cancel',
+                                showCloseButton: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    var emailContent = document.getElementById('snow-editor').innerHTML;
+                                    document.getElementById('emailContent').value = emailContent;
+
+                                    // Check if the action is "Accept"
+                                    if (action === 'Accept') {
+                                        // Perform your acceptance logic, including sending the content to the server
+                                        var id = document.querySelector('input[name="Id"]').value;
+                                        acceptApplication(id, emailContent);
+                                    }
+                                }
+                            });
+                        }
+
+                    </script>
+
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p><strong>Request State</strong></p>
+                        </div>
+
+                        <input type="hidden" id="emailContent" name="emailContent" />
+
+                        <div class="col-1">
+                            <form id="acceptForm" method="post">
+                                <input type="hidden" asp-for="Id" />
+                                <button type="button" onclick="showConfirmationAndCapture1('Are you sure you want to accept this student?', 'Accept');" class="btn btn-outline-success">Accept</button>
+                            </form>
+                        </div>
+
+                        <div class="col-3">
+                            <form id="rejectForm" method="post">
+                                <input type="hidden" asp-for="Id" />
+                                <button type="button" onclick="showConfirmationAndCapture('Are you sure you want to reject this student?', 'Reject');" class="btn btn-outline-danger">Reject</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.getElementById('acceptForm').addEventListener('submit', function (event) {
+                            event.preventDefault(); // Prevent the default form submission
+
+                            var id = document.querySelector('input[name="Id"]').value;
+                            acceptApplication(id);
+                        });
+
+                        document.getElementById('rejectForm').addEventListener('submit', function (event) {
+                            event.preventDefault(); // Prevent the default form submission
+
+                            var id = document.querySelector('input[name="Id"]').value;
+                            rejectApplication(id);
+                        });
+
+                        function showConfirmation(message, action) {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                icon: 'question',
+                                text: message,
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes',
+                                cancelButtonText: 'Cancel',
+                                showCloseButton: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    var id = document.querySelector('input[name="Id"]').value;
+                                    if (action === 'Accept') {
+                                        acceptApplication(id);
+                                    } else if (action === 'Reject') {
+                                        rejectApplication(id);
+                                    }
+                                }
+                            });
+                        }
+
+                        function acceptApplication(id, emailContent) {
+                            fetch('/Students/Accept/' + id, {
+                                method: 'POST',
+                                body: JSON.stringify(emailContent),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }).then((response) => {
+                                if (response.ok) {
+                                    window.location.href = '/Students/Details/' + id;
+                                } else {
+                                    console.log('Error rejecting application');
+                                }
+                            }).catch((error) => {
+                                console.log('Error rejecting application:', error);
+                            });
+                        }
+
+                        function rejectApplication(id, emailContent) {
+                            fetch('/Students/Reject/' + id, {
+                                method: 'POST',
+                                body: JSON.stringify(emailContent),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            }).then((response) => {
+                                if (response.ok) {
+                                    window.location.href = '/Students/Details/' + id;
+                                } else {
+                                    console.log('Error rejecting application');
+                                }
+                            }).catch((error) => {
+                                console.log('Error rejecting application:', error);
+                            });
+                        }
+                    </script>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="header-title"> Email Content</h2>
+                                    <div id="snow-editor" style="height: 150px;">
+                                        <h3><span class="ql-size-large">Write Email Content</span></h3>
+                                    </div> <!-- end Snow-editor-->
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                        </div><!-- end col -->
+                    </div>
+
+                    <br />
+                    <br />
+                    <!-- Display file content -->
+                    <!-- Display CV file -->
+                    @if (ViewData["filenotfound"] == null)
+                    {
+                        @if (!string.IsNullOrEmpty(ViewData["AccessFileContent"] as string))
+                        {
+                            <h1>Transcript File</h1>
+                            <embed src="data:application/pdf;base64,@ViewData["AccessFileContent"]" width="100%" height="600px" type="application/pdf"></embed>
+                        }
+                    }else{
+                        <h2>@ViewData["filenotfound"]</h2>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

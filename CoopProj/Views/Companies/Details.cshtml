@@ -1,0 +1,78 @@
+﻿@model CoopProj.Models.Companies
+
+@{
+    ViewData["Title"] = "AccountCompany";
+}
+<style>
+    .detail-heading {
+        font-size: 24px; /* Adjust the font size value as desired */
+    }
+
+    .detail-label {
+        font-size: 22px; /* Adjust the font size value as desired */
+    }
+
+    .detail-value {
+        font-size: 20px; /* Adjust the font size value as desired */
+    }
+
+    .specific-size {
+        width: 400px; /* Adjust the width value as desired */
+        height: 400px; /* Adjust the height value as desired */
+    }
+</style>
+<div class="card">
+    <div class="card-body">
+        <a  asp-action="Index" style="font-size: 35px;">
+            <i class="fe-arrow-left"></i>
+        </a>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">
+                    <span class="detail-heading">Detail</span>
+                </h3>
+                <dl class="row">
+                    <dt class="col-sm-4 detail-label mt-3">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-sm-8 detail-value mt-3">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-4 detail-label mt-3">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-8 detail-value mt-3">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt class="col-sm-4 detail-label mt-3">
+                        @Html.DisplayNameFor(model => model.ContactName)
+                    </dt>
+                    <dd class="col-sm-8 detail-value mt-3">
+                        @Html.DisplayFor(model => model.ContactName)
+                    </dd>
+                    <dt class="col-sm-4 detail-label mt-3">
+                        @Html.DisplayNameFor(model => model.ContactNumber)
+                    </dt>
+                    <dd class="col-sm-8 detail-value mt-3">
+                        @Html.DisplayFor(model => model.ContactNumber)
+                    </dd>
+                    <dt class="col-sm-4 detail-label mt-3">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class="col-sm-8 detail-value mt-3">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                </dl>
+                <div class="mt-4">
+                    <a class="btn btn-outline-secondary" asp-action="EditForCompanies" asp-route-id="@Model.Id">Edit</a>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex flex-column align-items-center">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">
+                    <span class="detail-heading">Profile</span>
+                </h3>
+                <img src="@Model.Image" alt="Car Image" class="specific-size rounded-circle">
+            </div>
+        </div>
+    </div>
+</div>

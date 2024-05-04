@@ -1,0 +1,111 @@
+﻿@model IEnumerable<CoopProj.Models.ApplyStudent>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Student Requests</h1>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                    <thead>
+                        <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Students)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Requests)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Students.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Requests.Companies.Name)
+                                @Html.DisplayFor(modelItem => item.Requests.Application)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2 justify-content-lg-end mt-3 mt-lg-0">
+                                    @if (item.Status == "Accepted")
+                                    {
+                                            <form id="finalForm" method="post" asp-action="FinalAccept">
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <button type="submit" class="btn btn-outline-success">Final Accept</button>
+                                            </form>
+                                    }
+                                        @if (item.Status == "Final Accepted")
+                                        {
+                                            <a class="btn btn-outline-danger" asp-action="Print" target="_blank" asp-route-id="@item.Id">Letter<i class="fe-file-text"></i></a>
+
+                                        }
+                                    
+                                        <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Detail<i class="fe-file-text"></i></a>
+                                   
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+@*
+<script>
+    document.getElementById('finalForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var id = document.querySelector('input[name="Id"]').value;
+        acceptApplication(id);
+    });
+
+    function showConfirmation(message, action) {
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'question',
+            text: message,
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel',
+            showCloseButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var id = document.querySelector('input[name="Id"]').value;
+                if (action === 'Accept') {
+                    acceptApplication(id);
+                }
+            }
+        });
+    }
+
+    function acceptApplication(id) {
+        fetch('/ApplyStudents/FinalAccept/' + id, {
+            method: 'POST'
+        }).then((response) => {
+            if (response.ok) {
+                window.location.href = '/ApplyStudents/Index/' + id;
+            } else {
+                console.log('Error accepting application');
+            }
+        }).catch((error) => {
+            console.log('Error accepting application:', error);
+        });
+    }
+</script>*@

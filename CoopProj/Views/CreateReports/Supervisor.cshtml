@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CoopProj.Models.CreateReport>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Reports</h1>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+          
+            <div class="card-body">
+                <p>
+                    <a asp-action="Create"><span class="fe-plus-circle"></span>Add Report</a>
+                </p>
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+
+                        <div class="card-header">
+                            <div class="text-start">
+                                <h5>@Html.DisplayFor(modelItem => item.ReportName.Name)</h5>
+                            </div>
+
+                            <div class="text-end" style="margin-top:-35px">
+                                <div class="dropdown" >
+                                    <a class="text-body dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-dots-vertical font-20"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                        <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                        <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.SupervisorReport.Name)</h5>
+                                    <p class="card-text">@Html.DisplayNameFor(model => model.StartTime): @Html.DisplayFor(modelItem => item.StartTime)</p>
+                                    <p class="card-text">@Html.DisplayNameFor(model => model.EndTime): @Html.DisplayFor(modelItem => item.EndTime)</p>
+                                </div>
+                                <div>
+                                    <a class="btn btn-primary" asp-controller="ReportsSupervisor" asp-action="Index" asp-route-id="@item.Id">Senders</a>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

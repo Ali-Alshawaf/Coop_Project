@@ -1,0 +1,235 @@
+﻿@model CoopProj.Models.ApplyStudent
+
+@{
+    ViewData["Title"] = "Details";
+
+}
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table thead th {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table tbody td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <a href="javascript:void(0);" onclick="window.history.back();" style="font-size:35px; "><i class="fe-arrow-left"></i></a>
+
+                <hr />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Students)
+                            </th>
+                            <th>Application</th>
+
+                            <th>@Html.DisplayNameFor(model => model.GPA)</th>
+                            <th>Request Time</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.Students.Name)</td>
+                            <td>
+                                @Html.DisplayFor(model => model.Requests.Companies.Name) @Html.DisplayFor(model => model.Requests.Application)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.GPA)</td>
+                            <td>@Html.DisplayFor(model => model.RequestTime)</td>
+
+
+
+                        </tr>
+                    </tbody>
+
+                    <thead>
+                        <tr>
+
+
+                            <th>Start Trining</th>
+
+                            <th>
+                                End Trining
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayFor(model => model.StartTrining)</td>
+                            <td>
+                                @Html.DisplayFor(model => model.EndTrining)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.Status)</td>
+                            <td>
+                                @if (Model.Status == "Waiting")
+                                {
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                        </div>
+
+                                        <div class="col">
+                                            <form id="acceptForm" method="post">
+                                                <input type="hidden" asp-for="Id" />
+                                                <button type="button" onclick="showConfirmation('Are you sure you want to accept this application?', 'Accept');" class="btn btn-outline-success">Accept</button>
+                                            </form>
+                                        </div>
+
+                                        <div class="col">
+                                            <form id="rejectForm" method="post">
+                                                <input type="hidden" asp-for="Id" />
+                                                <button type="button" onclick="showConfirmation('Are you sure you want to reject this application?', 'Reject');" class="btn btn-outline-danger">Reject</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                }
+                            </td>
+
+
+
+                        </tr>
+                    </tbody>
+
+
+                </table>
+                <br />
+                  
+                    <br/>
+                    <br/>
+                <!-- Display file content -->
+                <!-- Display CV file -->
+                @if (ViewData["filenotfound"] == null)
+                {
+                    @if (!string.IsNullOrEmpty(ViewData["FileContent"] as string))
+                    {
+                        <h1>CV File</h1>
+                        <embed src="data:application/pdf;base64,@ViewData["FileContent"]" width="100%" height="600px" type="application/pdf"></embed>
+                    }
+
+                }
+                else
+                {
+                    <h2>@ViewData["filenotfound"]</h2>
+                }
+
+
+
+                @if (ViewData["Letternotfound"] == null)
+                {
+                    <!-- Display letter file -->
+                    @if (!string.IsNullOrEmpty(ViewData["LetterContent"] as string))
+                    {
+                        <h1>Letter File</h1>
+                        <embed src="data:application/pdf;base64,@ViewData["LetterContent"]" width="100%" height="600px" type="application/pdf"></embed>
+                    }
+                }
+                else
+                {
+                    <h2>@ViewData["Letternotfound"]</h2>
+                }
+
+                @if (ViewData["Transcriptnotfound"] == null)
+                {
+                    @if (!string.IsNullOrEmpty(ViewData["TranscriptContent"] as string))
+                    {
+                        <h1>Transcript File</h1>
+                        <embed src="data:application/pdf;base64,@ViewData["TranscriptContent"]" width="100%" height="600px" type="application/pdf"></embed>
+                    }
+                }
+                else
+                {
+                    <h2>@ViewData["Transcriptnotfound"]</h2>
+                }
+
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('acceptForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var id = document.querySelector('input[name="Id"]').value;
+        acceptApplication(id);
+    });
+
+    document.getElementById('rejectForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var id = document.querySelector('input[name="Id"]').value;
+        rejectApplication(id);
+    });
+
+    function showConfirmation(message, action) {
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'question',
+            text: message,
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel',
+            showCloseButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var id = document.querySelector('input[name="Id"]').value;
+                if (action === 'Accept') {
+                    acceptApplication(id);
+                } else if (action === 'Reject') {
+                    rejectApplication(id);
+                }
+            }
+        });
+    }
+
+    function acceptApplication(id) {
+        fetch('/ApplyStudentsCompany/Accept/' + id, {
+            method: 'POST'
+        }).then((response) => {
+            if (response.ok) {
+                window.location.href = '/Requests1/Details/' + id;
+            } else {
+                console.log('Error accepting application');
+            }
+        }).catch((error) => {
+            console.log('Error accepting application:', error);
+        });
+    }
+
+    function rejectApplication(id) {
+        fetch('/ApplyStudentsCompany/Reject/' + id, {
+            method: 'POST'
+        }).then((response) => {
+            if (response.ok) {
+                window.location.href = '/Requests1/Details/' + id;
+            } else {
+                console.log('Error rejecting application');
+            }
+        }).catch((error) => {
+            console.log('Error rejecting application:', error);
+        });
+    }
+</script>

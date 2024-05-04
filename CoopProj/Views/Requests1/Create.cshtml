@@ -1,0 +1,67 @@
+﻿@model CoopProj.Models.Requests
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <h4>Request</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                           
+                            <div class="form-group">
+                                <label asp-for="StartDate" class="control-label"></label>
+                                <input type="date" asp-for="StartDate" class="form-control" />
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="EndDate" class="control-label"></label>
+                                <input type="date" asp-for="EndDate" class="form-control" />
+                                <span asp-validation-for="EndDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Application" class="control-label"></label>
+                                <input asp-for="Application" class="form-control" />
+                                <span asp-validation-for="Application" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Location" class="control-label"></label>
+                                <input asp-for="Location" class="form-control" />
+                                <span asp-validation-for="Location" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Quantity" class="control-label"></label>
+                                <input asp-for="Quantity" class="form-control" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Major" class="control-label"></label>
+                                <select asp-for="Major" class="form-control" id="selectize-optgroup" multiple placeholder="Select Major" asp-items="ViewBag.MajorId">
+                                    <option value="">Select Major</option>
+                                </select>
+                                <span asp-validation-for="Major" class="text-danger"></span>
+                            </div>
+
+
+                            <hr />
+                            <div>
+                                <input type="submit" value="Create" class="btn btn-outline-success" /> |
+                                <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,94 @@
+﻿@model CoopProj.Models.Students
+
+@{
+    ViewData["Title"] = "EditForStudent";
+}
+
+<style>
+    .detail-heading {
+        font-size: 22px; /* Adjust the font size value as desired */
+    }
+
+    .detail-label {
+        font-size: 18px; /* Adjust the font size value as desired */
+    }
+
+    .detail-value {
+        font-size: 16px; /* Adjust the font size value as desired */
+    }
+
+    .specific-size {
+        width: 300px; /* Adjust the width value as desired */
+        height: 300px; /* Adjust the height value as desired */
+    }
+</style>
+<div class="card">
+    <div class="card-body">
+        <a asp-action="AccountStudent" style="font-size: 35px;">
+            <i class="fe-arrow-left"></i>
+        </a>
+        <form asp-action="EditForStudent" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="mb-2 pb-2 pb-md-0 mb-md-3">
+                        <span class="detail-heading">Detail</span>
+                    </h3>
+                    <dl class="row">
+                        <dt class="col-sm-4 detail-label mt-2">
+                            <label asp-for="Name" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-8 detail-value mt-2">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </dd>
+                        <dt class="col-sm-4 detail-label mt-2">
+                            <label asp-for="NumberPhone" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-8 detail-value mt-2">
+                            <input asp-for="NumberPhone" class="form-control" />
+                            <span asp-validation-for="NumberPhone" class="text-danger"></span>
+                        </dd>
+                        <dt class="col-sm-4 detail-label mt-2">
+                            <label asp-for="UniversityID" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-8 detail-value mt-2">
+                            <input asp-for="UniversityID" class="form-control" />
+                            <span asp-validation-for="UniversityID" class="text-danger"></span>
+                        </dd>
+                    </dl>
+                    <div class="mt-4">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex flex-column align-items-center">
+                    <h3 class="mb-2 pb-2 pb-md-0 mb-md-3">
+                        <span class="detail-heading">Profile</span>
+                    </h3>
+                    <img id="cimage" src="@Model.Image" alt="Image" class="specific-size rounded-circle">
+                    <div class="aa mt-4">
+                        <input type="file" asp-for="Image" id="image-input" class="form-control" onchange="displaySelectedImage(event)" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function displaySelectedImage(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById('cimage').src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

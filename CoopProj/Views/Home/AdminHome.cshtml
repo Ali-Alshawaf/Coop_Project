@@ -1,0 +1,308 @@
+﻿@using System.Security.Claims;
+
+<h1></h1>
+<br/>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="text-center">
+                        <h1>Welcome, @User.FindFirst(ClaimTypes.GivenName).Value</h1>
+                    </div> <!-- end row -->
+                </div>
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    </div>
+</div>
+<!-- end row -->
+
+<h1>dashboard</h1>
+
+<div class="row">
+
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+                    <h4 class="text-muted mb-0">Admins</h4>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.User</span> </h3>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+
+                    <h4 class="text-muted mb-0">Companies</h4>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.Company</span> </h3>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+
+                    <h4 class="text-muted mb-0">Students</h4>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.Student</span> </h3>
+
+            </div>
+        </div>
+    </div><!-- end col -->
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+
+                    <h4 class="text-muted mb-0">Opportunities</h4>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.Request</span> </h3>
+                </div>
+        </div>
+    </div><!-- end col -->
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+
+                    <h4 class="text-muted mb-0">requests</h4>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.Apply</span> </h3>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+
+
+
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+
+                    <h4 class="text-muted mb-0">Accepted requests</h4>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.StatusAccept</span> </h3>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+
+                    <h4 class="text-muted mb-0">Rejected requests</h4>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.StatusReject</span> </h3>
+            </div>
+        </div>
+    </div><!-- end col -->
+
+    <div class="col-xl-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+
+                    <h4 class="text-muted mb-0">Waiting requests</h4>
+                    <hr style="border-top: 2px solid #1abc9c; font-weight: bold;">
+                    <h3 class="mb-1 mt-0"> <span data-plugin="counterup">@ViewBag.Statuswaiting</span> </h3>
+                </div>
+        </div>
+    </div><!-- end col -->
+
+
+    <h1>Statistics</h1>
+
+    <div class="row">
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Companies</h2>
+                    <p>Download all Company information into an Excel file</p>
+
+                    @using (Html.BeginForm("CompanyStatistics", "DownloadStatistics", FormMethod.Post))
+                    {
+
+                        <div class="row">
+                            <div class="col-4">
+                                <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                            <div class="col-2">
+                                @Html.Label("Select Year:")
+                            </div>
+                            <div class="col-4">
+                                @{
+                                    var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                    yearRange.Insert(0, 0); // Add an option for All Years
+                                }
+                                @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Students</h2>
+                    <p>Download all student information into an Excel file</p>
+                    @using (Html.BeginForm("SudentStatistics", "DownloadStatistics", FormMethod.Post))
+                    {
+
+                        <div class="row">
+                            <div class="col-4">
+                                <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                            <div class="col-2">
+                                @Html.Label("Select Year:")
+                            </div>
+                            <div class="col-4">
+                                @{
+                                    var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                    yearRange.Insert(0, 0); // Add an option for All Years
+                                }
+                                @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Supervisors</h2>
+                    <p>Download all supervisor information into an Excel file</p>
+                    @using (Html.BeginForm("SupervisorStatistics", "DownloadStatistics", FormMethod.Post))
+                    {
+
+                        <div class="row">
+                            <div class="col-4">
+                                <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                            <div class="col-2">
+                                @Html.Label("Select Year:")
+                            </div>
+                            <div class="col-4">
+                                @{
+                                    var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                    yearRange.Insert(0, 0); // Add an option for All Years
+                                }
+                                @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Opportunity</h2>
+                    <p>Download all opportunity of company information into an Excel file</p>
+
+                    @using (Html.BeginForm("OpportunityStatistics", "DownloadStatistics", FormMethod.Post))
+                    {
+
+                        <div class="row">
+                            <div class="col-4">
+                                <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                            <div class="col-2">
+                                @Html.Label("Select Year:")
+                            </div>
+                            <div class="col-4">
+                                @{
+                                    var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                    yearRange.Insert(0, 0); // Add an option for All Years
+                                }
+                                @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Requests</h2>
+                    <p>Download all request of student information into an Excel file</p>
+                    @using (Html.BeginForm("RequestStatistics", "DownloadStatistics", FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="col-4">
+                                <button class="btn btn-primary" target="_blank" type="submit">Download</button>
+                            </div>
+                            <div class="col-2">
+                            </div>
+                            <div class="col-2">
+                                @Html.Label("Select Year:")
+                            </div>
+                            <div class="col-4">
+                                @{
+                                    var yearRange = Enumerable.Range(2020, DateTime.Now.Year - 2020 + 1).ToList();
+                                    yearRange.Insert(0, 0); // Add an option for All Years
+                                }
+                                @Html.DropDownList("selectedYear", new SelectList(yearRange), new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>All Files</h2>
+                    <p>Download all Files for website information into an Excel file</p>
+                    <form action="@Url.Action("DownloadStatistics", "AllSheets")" method="post">
+                        <button class="btn btn-primary" type="submit">Download</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
