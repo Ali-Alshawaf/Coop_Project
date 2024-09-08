@@ -1,7 +1,7 @@
 **Title: Coop Project Report Description**
 
 **Introduction:**
-The Coop Project is a comprehensive web application developed during my training at KFU, designed to streamline the process of cooperative training for students, companies, supervisors, and administrators. This report aims to provide an overview of the project's functionalities, architecture, and implementation details.
+The Coop Project is a comprehensive web application developed during my training at Deanship of IT in KFU, designed to streamline the process of cooperative training for students, companies, supervisors, and administrators. This report aims to provide an overview of the project's functionalities, architecture, and implementation details.
 
 **Project Overview:**
 The Coop Project revolves around four primary roles: Admin, Company, Supervisor, and Student. Each role has distinct responsibilities within the application ecosystem, contributing to the efficient management of cooperative training opportunities.
