@@ -27,3 +27,7 @@ The Coop Project represents a significant milestone in facilitating cooperative 
 **Future Enhancements:**
 Potential future enhancements for the Coop Project may include additional features such as real-time notifications, advanced reporting tools, and enhanced user interfaces to further optimize the cooperative training experience for all users.
 
+
+**ERD**
+![ERD](https://github.com/user-attachments/assets/fc4839c0-9ecc-4236-b44d-ceb6bf591951)
+
