@@ -1,4 +1,4 @@
-#Coop Training web App**Title: Coop Project Report Description**
+**Title: Coop Project Report Description**
 
 **Introduction:**
 The Coop Project is a comprehensive web application developed during my training at KFU, designed to streamline the process of cooperative training for students, companies, supervisors, and administrators. This report aims to provide an overview of the project's functionalities, architecture, and implementation details.
