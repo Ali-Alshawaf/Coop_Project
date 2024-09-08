@@ -19,7 +19,9 @@ The Coop Project revolves around four primary roles: Admin, Company, Supervisor,
    - Students engage with the system by browsing and registering for available cooperative training opportunities. They can submit reports to their supervisors for assessment and feedback, facilitating a dynamic learning process.
 
 **Technical Details:**
-The Coop Project is developed using ASP.NET Core MVC for the web application, ensuring a robust and scalable framework for seamless performance. The project database is managed using SQL Server Management Studio (SSMS), providing a secure and efficient data storage solution.
+The Coop Project is developed using ASP.NET Core MVC for the web application, ensuring a robust and scalable framework for seamless performance. 
+To enhance the user interface and responsiveness, Bootstrap is integrated into the project, providing a sleek and modern design that adapts well to various screen sizes.
+The project database is managed using SQL Server Management Studio (SSMS), providing a secure and efficient data storage solution.
 
 **Conclusion:**
 The Coop Project represents a significant milestone in facilitating cooperative training processes for students, companies, supervisors, and administrators. By leveraging modern technologies and a user-centric design approach, the application aims to enhance the overall experience of all stakeholders involved in cooperative training programs.
