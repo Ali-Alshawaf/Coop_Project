@@ -29,5 +29,16 @@ Potential future enhancements for the Coop Project may include additional featur
 
 
 **ERD**
+
+
 ![ERD](https://github.com/user-attachments/assets/fc4839c0-9ecc-4236-b44d-ceb6bf591951)
+
+
+
+
+**Interface**
+
+
+![Screenshot 2024-09-08 145806](https://github.com/user-attachments/assets/809ce8bb-374d-43cc-a329-8abd138bb5ee)
+
 
