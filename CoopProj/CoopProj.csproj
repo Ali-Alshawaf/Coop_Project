@@ -30,9 +30,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\CVS\" />
-    <Folder Include="wwwroot\Letters\" />
-    <Folder Include="wwwroot\Reports\" />
-    <Folder Include="wwwroot\Transcripts\" />
   </ItemGroup>
 
 </Project>
