@@ -284,13 +284,13 @@ namespace CoopProj.Controllers
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("good10manx@gmail.com", "vsuepgdfexnjbeih"),
+                Credentials = new NetworkCredential("##Here Email##", "##Here password##"),
                 EnableSsl = true,
             };
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("good10manx@gmail.com"),
+                From = new MailAddress("##Here Email##"),
                 Subject = "Your request has been rejected",
                 Body = $"Dear student {name}\n\nyour request has been rejected in {company} : at {Opp} Application.",
                 IsBodyHtml = false,

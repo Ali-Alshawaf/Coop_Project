@@ -119,13 +119,13 @@ namespace CoopProj.Controllers
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("good10manx@gmail.com", "vsuepgdfexnjbeih"),
+                Credentials = new NetworkCredential("##Here Email##", "##Here password##"),
                 EnableSsl = true,
             };
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("good10manx@gmail.com"),
+                From = new MailAddress("##Here Email##"),
                 Subject = "Confirm Your Email",
                 Body = $"Dear Student {name},\n\nPlease confirm your email address by clicking the link below:\n\n{confirmationLink}\n\nThank you for signing up.\n\nSincerely,\nYour Service Provider",
                 IsBodyHtml = false,
@@ -614,9 +614,9 @@ namespace CoopProj.Controllers
             // Use the SMTP settings defined within your HomeController
             string smtpServer = "smtp.gmail.com";
             int smtpPort = 587;
-            string smtpUsername = "good10manx@gmail.com";
+            string smtpUsername = "##Here Email##";
             string smtpPassword = "vsuepgdfexnjbeih";
-            string senderEmail = "good10manx@gmail.com";
+            string senderEmail = "##Here Email##";
 
             try
             {

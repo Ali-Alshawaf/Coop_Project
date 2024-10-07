@@ -239,13 +239,13 @@ namespace CoopProj.Controllers
                         var smtpClient = new SmtpClient("smtp.gmail.com")
                         {
                             Port = 587,
-                            Credentials = new NetworkCredential("good10manx@gmail.com", "vsuepgdfexnjbeih"),
+                            Credentials = new NetworkCredential("##Here Email##", "##Here password##"),
                             EnableSsl = true,
                         };
 
                         var mailMessage = new MailMessage
                         {
-                            From = new MailAddress("good10manx@gmail.com"),
+                            From = new MailAddress("##Here Email##"),
                             Subject = "Thank you for your request",
                             Body = $"Dear Student,\n\nWe have received your request and we will process it as soon as possible.\n\nThank you for choosing our service {nameCompany}.\n\nSincerely,\nYour Service Provider\n\n {time} ",
                             IsBodyHtml = false,

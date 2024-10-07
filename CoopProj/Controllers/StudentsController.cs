@@ -230,13 +230,13 @@ namespace CoopProj.Controllers
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("good10manx@gmail.com", "vsuepgdfexnjbeih"),
+                Credentials = new NetworkCredential("##Here Email##", "##Here password##"),
                 EnableSsl = true,
             };
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress("good10manx@gmail.com"),
+                From = new MailAddress("##Here Email##"),
                 Subject = subject,
                 Body = $"Dear student {recipientName},\n\n{plainTextEmailContent}", // Include the student's name
                 IsBodyHtml = false, // Set to false to treat the content as plain text
