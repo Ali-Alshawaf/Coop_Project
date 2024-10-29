@@ -44,7 +44,7 @@ Potential future enhancements for the Coop Project may include additional featur
 
 
 
-**Some pages**
+**Student pages**
 
 
 ![Screenshot 2024-09-08 145806](https://github.com/user-attachments/assets/809ce8bb-374d-43cc-a329-8abd138bb5ee)
@@ -60,6 +60,15 @@ Potential future enhancements for the Coop Project may include additional featur
 
 ![image](https://github.com/user-attachments/assets/2337ee9e-630d-4211-bc27-9d8a2727fe29)
 
+
+**Company pages**
+![image](https://github.com/user-attachments/assets/085388e6-f743-48b7-a7a7-2992aae4ae74)
+
+![image](https://github.com/user-attachments/assets/12e8d31f-d598-4e00-b64f-b4647c3caa73)
+
+![image](https://github.com/user-attachments/assets/dc056518-d4d3-4560-88f3-36896957f998)
+
+![image](https://github.com/user-attachments/assets/27f51e3a-7789-4b6d-95c3-f4d073c01707)
 
 
 
