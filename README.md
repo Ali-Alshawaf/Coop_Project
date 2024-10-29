@@ -50,7 +50,8 @@ Potential future enhancements for the Coop Project may include additional featur
 ![Screenshot 2024-09-08 145806](https://github.com/user-attachments/assets/809ce8bb-374d-43cc-a329-8abd138bb5ee)
 
 
-![localhost_44384_Home_AdminHome (1)](https://github.com/user-attachments/assets/696849d0-e9a5-4e1f-92f5-032e690fe153)
+![image](https://github.com/user-attachments/assets/b0e87d43-047a-493c-967a-4c7d017c25f2)
+
 
 
 ![Oppo](https://github.com/user-attachments/assets/44a7346b-2d62-4f73-838f-4389306b7c08)
