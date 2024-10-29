@@ -55,8 +55,11 @@ Potential future enhancements for the Coop Project may include additional featur
 ![image](https://github.com/user-attachments/assets/e6a6b398-cb81-47f1-8b90-5619ca874c27)
 
 ![image](https://github.com/user-attachments/assets/5de85045-7a35-4b25-8c20-a6f8a4d1b4cd)
-![AorR](https://github.com/user-attachments/assets/1147838a-dc7a-4f9a-a03c-32c6f52c0d20)
-<img width="960" alt="ComAccept" src="https://github.com/user-attachments/assets/2ff0ffb2-7e6f-4902-92ea-4eaa93073dc5">
+
+![image](https://github.com/user-attachments/assets/b5d5255b-c4c7-4e1f-b023-2a17f6fdafdb)
+
+![image](https://github.com/user-attachments/assets/2337ee9e-630d-4211-bc27-9d8a2727fe29)
+
 
 
 
